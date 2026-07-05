@@ -98,14 +98,7 @@ div[data-testid="stMetric"] {
     box-shadow: 0 4px 6px rgba(0,0,0,0.04) !important;
     border: 1px solid rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    min-height: 120px !important;
-    height: auto !important;
-    position: relative !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     margin-bottom: 0px !important;
-    overflow: visible !important;
 }
 div[data-testid="stMetric"]:hover {
     transform: translateY(-2px);
