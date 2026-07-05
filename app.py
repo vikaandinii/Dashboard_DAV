@@ -98,7 +98,8 @@ div[data-testid="stMetric"] {
     box-shadow: 0 4px 6px rgba(0,0,0,0.04) !important;
     border: 1px solid rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    height: 90px !important;
+    min-height: 110px !important;
+    height: auto !important;
     position: relative !important;
     display: flex;
     flex-direction: column;

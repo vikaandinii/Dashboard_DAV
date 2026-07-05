@@ -91,4 +91,8 @@ def clean_heatmap_text(pivot_df, fmt):
     supaya sel kosong (NaN) tampil blank, bukan tulisan 'NaN'.
     fmt: fungsi format, misal lambda v: f"{v:.0f}%"
     """
-    return pivot_df.applymap(lambda v: "" if pd.isna(v) else fmt(v)).values
+    try:
+        return pivot_df.map(lambda v: "" if pd.isna(v) else fmt(v)).values
+    except AttributeError:
+        # Fallback for older pandas versions
+        return pivot_df.applymap(lambda v: "" if pd.isna(v) else fmt(v)).values
