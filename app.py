@@ -94,17 +94,18 @@ div[role="radiogroup"] > label:has(input:checked) * {
 div[data-testid="stMetric"] {
     background-color: #FFFFFF !important;
     border-radius: 16px;
-    padding: 15px 30px !important;
+    padding: 15px 20px !important;
     box-shadow: 0 4px 6px rgba(0,0,0,0.04) !important;
     border: 1px solid rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    min-height: 110px !important;
+    min-height: 120px !important;
     height: auto !important;
     position: relative !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-bottom: 0px !important;
+    overflow: visible !important;
 }
 div[data-testid="stMetric"]:hover {
     transform: translateY(-2px);
@@ -124,16 +125,18 @@ div[data-testid="stMetric"] label, div[data-testid="stMetric"] p {
     margin-bottom: 2px !important;
 }
 
-/* Remove background color (pill) from metric delta and move to bottom right */
+/* Remove background color (pill) from metric delta and adjust position */
 div[data-testid="stMetricDelta"] {
     background-color: transparent !important;
-    align-self: flex-end !important;
-    margin-top: -10px !important; /* tarik sedikit ke atas agar lebih rapat */
+    align-self: flex-start !important;
+    margin-top: 5px !important;
+    padding-bottom: 5px !important;
 }
 div[data-testid="stMetricDelta"] > div,
 div[data-testid="stMetricDelta"] * {
     background-color: transparent !important;
     font-size: 0.95rem !important;
+    line-height: 1.2 !important;
 }
 
 /* Markdown info boxes */
