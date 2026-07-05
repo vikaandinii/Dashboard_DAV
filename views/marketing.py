@@ -49,8 +49,8 @@ def render_marketing(filtered_df, df, period_type, selected_period):
         monthly_mkt['label'] = monthly_mkt['month_year'].apply(format_month_id)
 
         fig_dual = go.Figure()
-        fig_dual.add_trace(go.Bar(x=monthly_mkt['label'], y=monthly_mkt['final_price'], name='Pendapatan', marker_color='#818CF8', yaxis='y1'))
-        fig_dual.add_trace(go.Scatter(x=monthly_mkt['label'], y=monthly_mkt['discount_percent'], name='Diskon (%)', mode='lines+markers', line=dict(color='#4338CA', width=2), yaxis='y2'))
+        fig_dual.add_trace(go.Bar(x=monthly_mkt['label'], y=monthly_mkt['final_price'], name='Pendapatan', marker_color='#A5B4FC', yaxis='y1'))
+        fig_dual.add_trace(go.Scatter(x=monthly_mkt['label'], y=monthly_mkt['discount_percent'], name='Diskon (%)', mode='lines+markers', line=dict(color='#6366F1', width=2), yaxis='y2'))
         fig_dual.update_layout(title=f'Pendapatan vs Diskon per Bulan ({selected_period})',
                                height=CH, margin=MARGIN, plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
                                yaxis=dict(title='', side='left', showgrid=False),
@@ -58,7 +58,7 @@ def render_marketing(filtered_df, df, period_type, selected_period):
                                showlegend=False, font=dict(size=9))
                                
         if target_discount is not None and not pd.isna(target_discount) and period_type != "Semua":
-            fig_dual.add_hline(y=target_discount, line_dash="dash", line_color="#312E81", 
+            fig_dual.add_hline(y=target_discount, line_dash="dash", line_color="#4F46E5", 
                                annotation_text=f"Target Diskon: {target_discount:.1f}%", 
                                annotation_position="top left", yref="y2")
         st.plotly_chart(fig_dual, use_container_width=True)
@@ -68,7 +68,7 @@ def render_marketing(filtered_df, df, period_type, selected_period):
         sample_df = filtered_df.sample(n=min(3000, len(filtered_df)), random_state=42) if len(filtered_df) > 0 else filtered_df
         fig_scatter = px.scatter(sample_df, x='discount_percent', y='quantity', opacity=0.4, color='product_category',
                                  title=f"Diskon vs Kuantitas ({selected_period})", labels={'discount_percent': 'Diskon (%)', 'quantity': 'Qty'},
-                                 color_discrete_sequence=['#4F46E5', '#6366F1', '#818CF8', '#A5B4FC'])
+                                 color_discrete_sequence=['#6366F1', '#818CF8', '#A5B4FC', '#C7D2FE'])
         fig_scatter.update_layout(height=CH, margin=MARGIN, plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
                                    showlegend=False, font=dict(size=10))
         st.plotly_chart(fig_scatter, use_container_width=True)
@@ -78,7 +78,7 @@ def render_marketing(filtered_df, df, period_type, selected_period):
         orders_per_cust = filtered_df.groupby('customer_id')['order_id'].nunique().reset_index()
         fig_hist = px.histogram(orders_per_cust, x='order_id', nbins=10, title=f"Order per Customer ({selected_period})",
                                 labels={'order_id': 'Jml Order', 'count': 'Jml Customer'},
-                                color_discrete_sequence=['#8B5CF6'])
+                                color_discrete_sequence=['#A78BFA'])
         fig_hist.update_layout(height=CH, margin=MARGIN, plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', font=dict(size=10))
         st.plotly_chart(fig_hist, use_container_width=True)
 
@@ -125,7 +125,7 @@ def render_marketing(filtered_df, df, period_type, selected_period):
             z=retention_pct.values,
             x=[f"M+{c}" for c in retention_pct.columns],
             y=retention_pct.index,
-            colorscale=[[0, '#EEF2FF'], [0.5, '#818CF8'], [1, '#4338CA']],
+            colorscale=[[0, '#EEF2FF'], [0.5, '#A5B4FC'], [1, '#6366F1']],
             text=clean_heatmap_text(retention_pct, lambda v: f"{v:.0f}%"),
             texttemplate="%{text}",
             textfont={"size": 8},
@@ -144,7 +144,7 @@ def render_marketing(filtered_df, df, period_type, selected_period):
             z=revenue_pivot.values,
             x=[f"M+{c}" for c in revenue_pivot.columns],
             y=revenue_pivot.index,
-            colorscale=[[0, '#EEF2FF'], [0.5, '#6366F1'], [1, '#312E81']], # Diganti dari Pink ke Indigo/Ungu
+            colorscale=[[0, '#EEF2FF'], [0.5, '#818CF8'], [1, '#4F46E5']], # Diganti dari Pink ke Indigo/Ungu
             text=clean_heatmap_text(revenue_pivot, lambda v: f"{v/1e6:.1f}M"),
             texttemplate="%{text}",
             textfont={"size": 8},

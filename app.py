@@ -17,7 +17,7 @@ st.markdown("""
 /* Reset background with a soft modern color and a beautiful SVG wave header */
 .stApp {
     background-color: #F4F7FE !important;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 250'%3E%3Cpath fill='%236366F1' fill-opacity='1' d='M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,149.3C672,160,768,224,864,240C960,256,1056,224,1152,202.7C1248,181,1344,171,1392,165.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 250'%3E%3Cpath fill='%23818CF8' fill-opacity='1' d='M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,149.3C672,160,768,224,864,240C960,256,1056,224,1152,202.7C1248,181,1344,171,1392,165.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-size: 100% 250px;
 }
@@ -31,18 +31,17 @@ h1 {
     color: #FFFFFF !important;
     font-weight: 800 !important;
     font-size: 2.5rem !important;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     margin-bottom: 1rem !important;
 }
 
 /* Filter select box */
 div[data-testid="stSelectbox"] > div > div {
-    background-color: rgba(255, 255, 255, 0.9) !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
     border-radius: 12px !important;
     color: #1E293B !important;
     border: none !important;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 div[data-testid="stSelectbox"] label {
     color: #FFFFFF !important;
@@ -54,11 +53,10 @@ div[role="radiogroup"] {
     position: relative;
     z-index: 1 !important;
     gap: 10px;
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.95);
     padding: 8px 15px;
     border-radius: 25px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     margin-bottom: 25px; /* Memberi jarak agar tidak mepet dengan logo */
     justify-content: center;
 }
@@ -68,7 +66,7 @@ div[role="radiogroup"] > label {
     font-weight: 700;
     padding: 8px 16px;
     border-radius: 20px;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     cursor: pointer;
 }
 /* Hide the actual radio circle entirely */
@@ -78,12 +76,12 @@ div[role="radiogroup"] span[data-baseweb="radio"] > div:first-child {
     display: none !important;
 }
 div[role="radiogroup"] > label:hover {
-    background-color: rgba(255, 255, 255, 0.2) !important;
+    background-color: rgba(0, 0, 0, 0.05) !important;
 }
 div[role="radiogroup"] > label[data-checked="true"],
 div[role="radiogroup"] > label:has(input:checked) {
-    background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%) !important;
-    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
+    background: #818CF8 !important;
+    box-shadow: none !important;
 }
 div[role="radiogroup"] > label[data-checked="true"] *,
 div[role="radiogroup"] > label:has(input:checked) * {
@@ -95,14 +93,14 @@ div[data-testid="stMetric"] {
     background-color: #FFFFFF !important;
     border-radius: 16px;
     padding: 15px 20px !important;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.04) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04) !important;
     border: 1px solid rgba(0,0,0,0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: none;
     margin-bottom: 0px !important;
 }
 div[data-testid="stMetric"]:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px rgba(0,0,0,0.08) !important;
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04) !important;
 }
 div[data-testid="stMetric"] > div {
     color: #4F46E5 !important;

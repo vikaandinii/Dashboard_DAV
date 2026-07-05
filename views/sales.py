@@ -67,12 +67,12 @@ def render_sales(filtered_df, df, period_type, selected_period):
         fig_sales = px.line(monthly_sales, x='label', y='final_price', markers=True,
                             title=f"Tren Penjualan Bulanan ({selected_period})",
                             labels={'final_price': 'Pendapatan (Rp)', 'label': 'Bulan'},
-                            color_discrete_sequence=['#6366F1'])
+                            color_discrete_sequence=['#818CF8'])
                             
         if target_revenue is not None and not pd.isna(target_revenue) and period_type != "Semua":
             num_months = 12 if period_type == "Tahun" else 3
             monthly_target = target_revenue / num_months
-            fig_sales.add_hline(y=monthly_target, line_dash="dash", line_color="#8B5CF6", 
+            fig_sales.add_hline(y=monthly_target, line_dash="dash", line_color="#A5B4FC", 
                                 annotation_text=f"Target: Rp {monthly_target/1e6:.1f}M", 
                                 annotation_position="top left")
 
@@ -85,7 +85,7 @@ def render_sales(filtered_df, df, period_type, selected_period):
         brand_sales = sales_df.groupby('brand_tier')['final_price'].sum().reset_index()
         fig_brand = px.pie(brand_sales, names='brand_tier', values='final_price', hole=0.5,
                            title=f"Pendapatan per Brand ({selected_period})",
-                           color_discrete_sequence=['#4F46E5', '#6366F1', '#818CF8', '#A5B4FC'])
+                           color_discrete_sequence=['#6366F1', '#818CF8', '#A5B4FC', '#C7D2FE'])
         fig_brand.update_layout(height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)')
         fig_brand.update_traces(textposition='inside', textinfo='percent+label', showlegend=False)
         st.plotly_chart(fig_brand, use_container_width=True)
@@ -102,7 +102,7 @@ def render_sales(filtered_df, df, period_type, selected_period):
             fig_cat = px.bar(cat_compare, x='product_category', y='final_price', color='year', barmode='group',
                              title="Pertumbuhan Pendapatan per Kategori (2021 vs 2023)", text='label_text',
                              labels={'final_price': 'Pendapatan (Rp)', 'product_category': 'Kategori'},
-                             color_discrete_sequence=['#A5B4FC', '#4F46E5'])
+                             color_discrete_sequence=['#A5B4FC', '#6366F1'])
             fig_cat.update_layout(height=230, margin=dict(t=35, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', legend_title_text='')
             fig_cat.update_traces(textposition='outside', textfont_size=9, cliponaxis=False)
             st.plotly_chart(fig_cat, use_container_width=True)
@@ -146,7 +146,7 @@ def render_sales(filtered_df, df, period_type, selected_period):
             branchvalues="total",
             textinfo="label+percent parent",
             textfont=dict(color='#FFFFFF', size=12),
-            marker=dict(colors=["#312E81", "#3730A3", "#4338CA", "#4F46E5", "#6366F1", "#818CF8"] * (len(labels)//6 + 1)),
+            marker=dict(colors=["#4338CA", "#4F46E5", "#6366F1", "#818CF8", "#A5B4FC", "#C7D2FE"] * (len(labels)//6 + 1)),
             maxdepth=2
         ))
         fig_prov.update_layout(title=f"Proporsi Pendapatan per Provinsi ({selected_period})", height=230, margin=dict(t=45, b=0, l=10, r=10))
