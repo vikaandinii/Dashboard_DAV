@@ -48,47 +48,7 @@ div[data-testid="stSelectbox"] label {
     font-weight: 600;
 }
 
-/* Custom Radio Button styling to look like Pills (Top Navbar) */
-div[role="radiogroup"] {
-    position: relative;
-    z-index: 1 !important;
-    gap: 10px;
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 8px 15px;
-    border-radius: 25px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    margin-bottom: 25px; /* Memberi jarak agar tidak mepet dengan logo */
-    justify-content: center;
-}
-div[role="radiogroup"] > label {
-    background: transparent !important;
-    color: #334155 !important;
-    font-weight: 700;
-    padding: 8px 16px;
-    border-radius: 20px;
-    transition: all 0.2s ease;
-    cursor: pointer;
-}
-/* Hide the actual radio circle entirely */
-div[role="radiogroup"] label > div:first-child,
-div[role="radiogroup"] label > div:first-of-type,
-div[role="radiogroup"] span[data-baseweb="radio"] > div:first-child {
-    display: none !important;
-}
-div[role="radiogroup"] > label:hover {
-    background-color: rgba(0, 0, 0, 0.05) !important;
-}
-div[role="radiogroup"] > label[data-checked="true"],
-div[role="radiogroup"] > label:has(input:checked) {
-    background: #818CF8 !important;
-    box-shadow: none !important;
-}
-div[role="radiogroup"] > label[data-checked="true"] *,
-div[role="radiogroup"] > label:has(input:checked) * {
-    color: #FFFFFF !important;
-}
 
-/* Modern Metric Cards */
 div[data-testid="stMetric"] {
     background-color: #FFFFFF !important;
     border-radius: 16px;
@@ -137,15 +97,14 @@ div.stMarkdown > div > div.stInfo {
     border-radius: 12px;
     color: #1E3A8A !important;
 }
-/* Memastikan dropdown tahun tidak tertutup radio button */
+/* Memastikan dropdown tahun tidak tertutup navigasi */
 div[data-testid="stSelectbox"] {
     position: relative;
     z-index: 9999 !important;
 }
-div[role="radiogroup"] {
-    position: relative;
-    z-index: 1 !important;
-    flex-wrap: wrap !important; /* Membuat navigasi responsif di mobile */
+div[data-testid="stPills"] {
+    margin-bottom: 25px; /* Memberi jarak agar tidak mepet dengan logo */
+    justify-content: center;
 }
 
 /* --- RESPONSIVE MOBILE TWEAKS --- */
@@ -166,10 +125,8 @@ div[role="radiogroup"] {
         gap: 5px;
         border-radius: 15px;
     }
-    div[role="radiogroup"] > label {
-        padding: 5px 10px;
-        font-size: 0.85rem !important;
-        border-radius: 10px;
+    div[data-testid="stPills"] {
+        margin-bottom: 10px;
     }
     
     /* Logo penyesuaian */
@@ -242,8 +199,10 @@ else:
     selected_period = f"{selected_year}{selected_q_option}"
 
 with col2:
-    # Menggunakan radio horizontal yang di-style dengan CSS agar terlihat seperti pill/tabs
-    page = st.radio("Navigasi", ["Sales", "Marketing", "Operations & Logistics", "Finance"], horizontal=True, label_visibility="collapsed")
+    # Menggunakan komponen st.pills asli dari Streamlit agar sangat responsif di semua perangkat (termasuk HP)
+    page = st.pills("Navigasi", ["Sales", "Marketing", "Operations & Logistics", "Finance"], default="Sales", label_visibility="collapsed")
+    if not page:
+        page = "Sales" # Fallback jika user mendeselect pill
 
 # Terapkan filter global
 if period_type == "Semua":
