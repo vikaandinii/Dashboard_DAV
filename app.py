@@ -71,10 +71,8 @@ div[role="radiogroup"] > label {
     transition: all 0.3s ease;
     cursor: pointer;
 }
-/* Hide the actual radio circle entirely */
-div[role="radiogroup"] label > div:first-child,
-div[role="radiogroup"] label > div:first-of-type,
-div[role="radiogroup"] span[data-baseweb="radio"] > div:first-child {
+/* Hide the actual radio circle entirely safely */
+div[role="radiogroup"] label > div:first-child:not(:last-child) {
     display: none !important;
 }
 div[role="radiogroup"] > label:hover {
@@ -98,7 +96,7 @@ div[data-testid="stMetric"] {
     box-shadow: 0 4px 6px rgba(0,0,0,0.04) !important;
     border: 1px solid rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    height: 90px !important;
+    min-height: 125px !important;
     position: relative !important;
     display: flex;
     flex-direction: column;
@@ -127,7 +125,7 @@ div[data-testid="stMetric"] label, div[data-testid="stMetric"] p {
 div[data-testid="stMetricDelta"] {
     background-color: transparent !important;
     align-self: flex-end !important;
-    margin-top: -10px !important; /* tarik sedikit ke atas agar lebih rapat */
+    margin-top: 0px !important;
 }
 div[data-testid="stMetricDelta"] > div,
 div[data-testid="stMetricDelta"] * {
