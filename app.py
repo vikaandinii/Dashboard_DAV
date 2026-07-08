@@ -145,6 +145,37 @@ div[data-testid="stSelectbox"] {
 div[role="radiogroup"] {
     position: relative;
     z-index: 1 !important;
+    flex-wrap: wrap !important; /* Membuat navigasi responsif di mobile */
+}
+
+/* --- RESPONSIVE MOBILE TWEAKS --- */
+@media (max-width: 768px) {
+    /* Perkecil judul dashboard */
+    h1 {
+        font-size: 1.75rem !important;
+    }
+    
+    /* Sesuaikan tinggi SVG Header agar tetap terlihat rapi */
+    .stApp {
+        background-size: 100% 200px;
+    }
+    
+    /* Navigasi lebih ringkas di layar kecil */
+    div[role="radiogroup"] {
+        padding: 5px 10px;
+        gap: 5px;
+        border-radius: 15px;
+    }
+    div[role="radiogroup"] > label {
+        padding: 5px 10px;
+        font-size: 0.85rem !important;
+        border-radius: 10px;
+    }
+    
+    /* Logo penyesuaian */
+    div.stMarkdown img {
+        height: 80px !important;
+    }
 }
 </style>
 """, unsafe_allow_html=True)
