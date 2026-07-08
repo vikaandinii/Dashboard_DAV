@@ -49,8 +49,8 @@ div[data-testid="stSelectbox"] label {
     font-weight: 600;
 }
 
-/* Custom Pills styling (Top Navbar) */
-div[data-testid="stPills"] > div {
+/* Custom Radio Button styling to look like Pills (Top Navbar) */
+div[role="radiogroup"] {
     position: relative;
     z-index: 1 !important;
     gap: 10px;
@@ -59,10 +59,10 @@ div[data-testid="stPills"] > div {
     border-radius: 25px;
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    margin-bottom: 25px;
+    margin-bottom: 25px; /* Memberi jarak agar tidak mepet dengan logo */
     justify-content: center;
 }
-div[data-testid="stPills"] > div > button {
+div[role="radiogroup"] > label {
     background: transparent !important;
     color: #334155 !important;
     font-weight: 700;
@@ -70,18 +70,23 @@ div[data-testid="stPills"] > div > button {
     border-radius: 20px;
     transition: all 0.3s ease;
     cursor: pointer;
-    border: none !important;
 }
-div[data-testid="stPills"] > div > button:hover {
+/* Hide the actual radio circle entirely */
+div[role="radiogroup"] label > div:first-child,
+div[role="radiogroup"] label > div:first-of-type,
+div[role="radiogroup"] span[data-baseweb="radio"] > div:first-child {
+    display: none !important;
+}
+div[role="radiogroup"] > label:hover {
     background-color: rgba(255, 255, 255, 0.2) !important;
 }
-div[data-testid="stPills"] > div > button[data-checked="true"],
-div[data-testid="stPills"] > div > button[aria-pressed="true"] {
+div[role="radiogroup"] > label[data-checked="true"],
+div[role="radiogroup"] > label:has(input:checked) {
     background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%) !important;
     box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
 }
-div[data-testid="stPills"] > div > button[data-checked="true"] *,
-div[data-testid="stPills"] > div > button[aria-pressed="true"] * {
+div[role="radiogroup"] > label[data-checked="true"] *,
+div[role="radiogroup"] > label:has(input:checked) * {
     color: #FFFFFF !important;
 }
 
@@ -93,7 +98,7 @@ div[data-testid="stMetric"] {
     box-shadow: 0 4px 6px rgba(0,0,0,0.04) !important;
     border: 1px solid rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    min-height: 125px !important;
+    height: 90px !important;
     position: relative !important;
     display: flex;
     flex-direction: column;
@@ -122,7 +127,7 @@ div[data-testid="stMetric"] label, div[data-testid="stMetric"] p {
 div[data-testid="stMetricDelta"] {
     background-color: transparent !important;
     align-self: flex-end !important;
-    margin-top: 0px !important;
+    margin-top: -10px !important; /* tarik sedikit ke atas agar lebih rapat */
 }
 div[data-testid="stMetricDelta"] > div,
 div[data-testid="stMetricDelta"] * {
@@ -211,10 +216,8 @@ else:
     selected_period = f"{selected_year}{selected_q_option}"
 
 with col2:
-    # Menggunakan st.pills yang secara alami TIDAK PUNYA radio dot, lalu di-style dengan CSS
-    page = st.pills("Navigasi", ["Sales", "Marketing", "Operations & Logistics", "Finance"], default="Sales", label_visibility="collapsed")
-    if not page:
-        page = "Sales"
+    # Menggunakan radio horizontal yang di-style dengan CSS agar terlihat seperti pill/tabs
+    page = st.radio("Navigasi", ["Sales", "Marketing", "Operations & Logistics", "Finance"], horizontal=True, label_visibility="collapsed")
 
 # Terapkan filter global
 if period_type == "Semua":
