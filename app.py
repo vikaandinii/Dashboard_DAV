@@ -16,8 +16,8 @@ st.markdown("""
 <style>
 /* Reset background with a soft modern color and a beautiful SVG wave header */
 .stApp {
-    background-color: #F4F7FE !important;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 250'%3E%3Cpath fill='%236366F1' fill-opacity='1' d='M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,149.3C672,160,768,224,864,240C960,256,1056,224,1152,202.7C1248,181,1344,171,1392,165.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+    background-color: #F0F4F8 !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 250'%3E%3Cpath fill='%230F2545' fill-opacity='1' d='M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,149.3C672,160,768,224,864,240C960,256,1056,224,1152,202.7C1248,181,1344,171,1392,165.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-size: 100% 250px;
 }
@@ -37,9 +37,9 @@ h1 {
 
 /* Filter select box */
 div[data-testid="stSelectbox"] > div > div {
-    background-color: rgba(255, 255, 255, 0.9) !important;
+    background-color: #D1D9E6 !important;
     border-radius: 12px !important;
-    color: #1E293B !important;
+    color: #0F2545 !important;
     border: none !important;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     backdrop-filter: blur(5px);
@@ -54,7 +54,7 @@ div[role="radiogroup"] {
     position: relative;
     z-index: 1 !important;
     gap: 10px;
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(224, 230, 237, 0.85); /* #E0E6ED */
     padding: 8px 15px;
     border-radius: 25px;
     backdrop-filter: blur(10px);
@@ -88,8 +88,8 @@ div[role="radiogroup"] > label:hover {
 }
 div[role="radiogroup"] > label[data-checked="true"],
 div[role="radiogroup"] > label:has(input:checked) {
-    background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%) !important;
-    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
+    background: #0F2545 !important;
+    box-shadow: 0 4px 10px rgba(15, 37, 69, 0.4);
 }
 div[role="radiogroup"] > label[data-checked="true"] *,
 div[role="radiogroup"] > label:has(input:checked) * {
@@ -116,7 +116,7 @@ div[data-testid="stMetric"]:hover {
     box-shadow: 0 10px 15px rgba(0,0,0,0.08) !important;
 }
 div[data-testid="stMetric"] > div {
-    color: #4F46E5 !important;
+    color: #0F2545 !important;
     font-weight: 800 !important;
 }
 div[data-testid="stMetricValue"] {
