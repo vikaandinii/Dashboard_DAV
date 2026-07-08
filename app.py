@@ -71,11 +71,13 @@ div[role="radiogroup"] > label {
     transition: all 0.3s ease;
     cursor: pointer;
 }
-/* Hide the actual radio circle entirely safely */
-div[role="radiogroup"] label > *:not(:last-child) {
+/* Hide all children initially (including the radio circle and input) */
+div[role="radiogroup"] label > * {
     display: none !important;
 }
-div[role="radiogroup"] label > div:last-child {
+/* Specifically show the text container (which is always the last child) */
+div[role="radiogroup"] label > div:last-child,
+div[role="radiogroup"] label > span:last-child {
     display: block !important;
     margin-left: 0px !important;
 }
