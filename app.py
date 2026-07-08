@@ -17,7 +17,7 @@ st.markdown("""
 /* Reset background with a soft modern color and a beautiful SVG wave header */
 .stApp {
     background-color: #F4F7FE !important;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 250'%3E%3Cpath fill='%23818CF8' fill-opacity='1' d='M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,149.3C672,160,768,224,864,240C960,256,1056,224,1152,202.7C1248,181,1344,171,1392,165.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 250'%3E%3Cpath fill='%236366F1' fill-opacity='1' d='M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,149.3C672,160,768,224,864,240C960,256,1056,224,1152,202.7C1248,181,1344,171,1392,165.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-size: 100% 250px;
 }
@@ -31,36 +31,83 @@ h1 {
     color: #FFFFFF !important;
     font-weight: 800 !important;
     font-size: 2.5rem !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
     margin-bottom: 1rem !important;
 }
 
 /* Filter select box */
 div[data-testid="stSelectbox"] > div > div {
-    background-color: rgba(255, 255, 255, 0.95) !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
     border-radius: 12px !important;
     color: #1E293B !important;
     border: none !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    backdrop-filter: blur(5px);
 }
 div[data-testid="stSelectbox"] label {
     color: #FFFFFF !important;
     font-weight: 600;
 }
 
+/* Custom Radio Button styling to look like Pills (Top Navbar) */
+div[role="radiogroup"] {
+    position: relative;
+    z-index: 1 !important;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 8px 15px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    margin-bottom: 25px; /* Memberi jarak agar tidak mepet dengan logo */
+    justify-content: center;
+}
+div[role="radiogroup"] > label {
+    background: transparent !important;
+    color: #334155 !important;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+/* Hide the actual radio circle entirely */
+div[role="radiogroup"] label > div:first-child,
+div[role="radiogroup"] label > div:first-of-type,
+div[role="radiogroup"] span[data-baseweb="radio"] > div:first-child {
+    display: none !important;
+}
+div[role="radiogroup"] > label:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+div[role="radiogroup"] > label[data-checked="true"],
+div[role="radiogroup"] > label:has(input:checked) {
+    background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%) !important;
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
+}
+div[role="radiogroup"] > label[data-checked="true"] *,
+div[role="radiogroup"] > label:has(input:checked) * {
+    color: #FFFFFF !important;
+}
 
+/* Modern Metric Cards */
 div[data-testid="stMetric"] {
     background-color: #FFFFFF !important;
     border-radius: 16px;
-    padding: 15px 20px !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.04) !important;
+    padding: 15px 30px !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.04) !important;
     border: 1px solid rgba(0,0,0,0.05);
-    transition: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 90px !important;
+    position: relative !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin-bottom: 0px !important;
 }
 div[data-testid="stMetric"]:hover {
-    transform: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.04) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.08) !important;
 }
 div[data-testid="stMetric"] > div {
     color: #4F46E5 !important;
@@ -76,18 +123,16 @@ div[data-testid="stMetric"] label, div[data-testid="stMetric"] p {
     margin-bottom: 2px !important;
 }
 
-/* Remove background color (pill) from metric delta and adjust position */
+/* Remove background color (pill) from metric delta and move to bottom right */
 div[data-testid="stMetricDelta"] {
     background-color: transparent !important;
-    align-self: flex-start !important;
-    margin-top: 5px !important;
-    padding-bottom: 5px !important;
+    align-self: flex-end !important;
+    margin-top: -10px !important; /* tarik sedikit ke atas agar lebih rapat */
 }
 div[data-testid="stMetricDelta"] > div,
 div[data-testid="stMetricDelta"] * {
     background-color: transparent !important;
     font-size: 0.95rem !important;
-    line-height: 1.2 !important;
 }
 
 /* Markdown info boxes */
@@ -97,42 +142,14 @@ div.stMarkdown > div > div.stInfo {
     border-radius: 12px;
     color: #1E3A8A !important;
 }
-/* Memastikan dropdown tahun tidak tertutup navigasi */
+/* Memastikan dropdown tahun tidak tertutup radio button */
 div[data-testid="stSelectbox"] {
     position: relative;
     z-index: 9999 !important;
 }
-div[data-testid="stPills"] {
-    margin-bottom: 25px; /* Memberi jarak agar tidak mepet dengan logo */
-    justify-content: center;
-}
-
-/* --- RESPONSIVE MOBILE TWEAKS --- */
-@media (max-width: 768px) {
-    /* Perkecil judul dashboard */
-    h1 {
-        font-size: 1.75rem !important;
-    }
-    
-    /* Sesuaikan tinggi SVG Header agar tetap terlihat rapi */
-    .stApp {
-        background-size: 100% 200px;
-    }
-    
-    /* Navigasi lebih ringkas di layar kecil */
-    div[role="radiogroup"] {
-        padding: 5px 10px;
-        gap: 5px;
-        border-radius: 15px;
-    }
-    div[data-testid="stPills"] {
-        margin-bottom: 10px;
-    }
-    
-    /* Logo penyesuaian */
-    div.stMarkdown img {
-        height: 80px !important;
-    }
+div[role="radiogroup"] {
+    position: relative;
+    z-index: 1 !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -199,10 +216,8 @@ else:
     selected_period = f"{selected_year}{selected_q_option}"
 
 with col2:
-    # Menggunakan komponen st.pills asli dari Streamlit agar sangat responsif di semua perangkat (termasuk HP)
-    page = st.pills("Navigasi", ["Sales", "Marketing", "Operations & Logistics", "Finance"], default="Sales", label_visibility="collapsed")
-    if not page:
-        page = "Sales" # Fallback jika user mendeselect pill
+    # Menggunakan radio horizontal yang di-style dengan CSS agar terlihat seperti pill/tabs
+    page = st.radio("Navigasi", ["Sales", "Marketing", "Operations & Logistics", "Finance"], horizontal=True, label_visibility="collapsed")
 
 # Terapkan filter global
 if period_type == "Semua":
