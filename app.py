@@ -98,7 +98,7 @@ div[data-testid="stMetric"] {
     box-shadow: 0 4px 6px rgba(0,0,0,0.04) !important;
     border: 1px solid rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    min-height: 120px !important;
+    height: 90px !important;
     position: relative !important;
     display: flex;
     flex-direction: column;
@@ -127,7 +127,7 @@ div[data-testid="stMetric"] label, div[data-testid="stMetric"] p {
 div[data-testid="stMetricDelta"] {
     background-color: transparent !important;
     align-self: flex-end !important;
-    margin-top: 0px !important;
+    margin-top: -10px !important; /* tarik sedikit ke atas agar lebih rapat */
 }
 div[data-testid="stMetricDelta"] > div,
 div[data-testid="stMetricDelta"] * {
