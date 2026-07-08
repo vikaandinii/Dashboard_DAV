@@ -71,16 +71,7 @@ div[role="radiogroup"] > label {
     transition: all 0.3s ease;
     cursor: pointer;
 }
-/* Hide all children initially (including the radio circle and input) */
-div[role="radiogroup"] label > * {
-    display: none !important;
-}
-/* Specifically show the text container (which is always the last child) */
-div[role="radiogroup"] label > div:last-child,
-div[role="radiogroup"] label > span:last-child {
-    display: block !important;
-    margin-left: 0px !important;
-}
+
 div[role="radiogroup"] > label:hover {
     background-color: rgba(255, 255, 255, 0.2) !important;
 }
@@ -220,8 +211,10 @@ else:
     selected_period = f"{selected_year}{selected_q_option}"
 
 with col2:
-    # Menggunakan radio horizontal yang di-style dengan CSS agar terlihat seperti pill/tabs
-    page = st.radio("Navigasi", ["Sales", "Marketing", "Operations & Logistics", "Finance"], horizontal=True, label_visibility="collapsed")
+    # Menggunakan segmented control agar tidak ada titik radio
+    page = st.segmented_control("Navigasi", ["Sales", "Marketing", "Operations & Logistics", "Finance"], default="Sales", label_visibility="collapsed")
+    if not page:
+        page = "Sales"
 
 # Terapkan filter global
 if period_type == "Semua":
