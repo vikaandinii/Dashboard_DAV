@@ -72,7 +72,10 @@ div[role="radiogroup"] > label {
     cursor: pointer;
 }
 /* Hide the actual radio circle entirely safely */
-div[role="radiogroup"] label > div:first-child:not(:last-child) {
+div[role="radiogroup"] label input[type="radio"] {
+    display: none !important;
+}
+div[role="radiogroup"] label > div:first-of-type:not(:last-child) {
     display: none !important;
 }
 div[role="radiogroup"] > label:hover {
