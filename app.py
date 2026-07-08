@@ -49,8 +49,8 @@ div[data-testid="stSelectbox"] label {
     font-weight: 600;
 }
 
-/* Custom Radio Button styling to look like Pills (Top Navbar) */
-div[role="radiogroup"] {
+/* Custom Pills styling (Top Navbar) */
+div[data-testid="stPills"] > div {
     position: relative;
     z-index: 1 !important;
     gap: 10px;
@@ -62,7 +62,7 @@ div[role="radiogroup"] {
     margin-bottom: 25px;
     justify-content: center;
 }
-div[role="radiogroup"] > label {
+div[data-testid="stPills"] > div > button {
     background: transparent !important;
     color: #334155 !important;
     font-weight: 700;
@@ -72,43 +72,16 @@ div[role="radiogroup"] > label {
     cursor: pointer;
     border: none !important;
 }
-/* Hide the actual radio circle with maximum specificity */
-div[role="radiogroup"] > label > div:first-child,
-div[role="radiogroup"] > label > span:first-child,
-div[role="radiogroup"] > label > :first-child {
-    display: none !important;
-    width: 0px !important;
-    height: 0px !important;
-    opacity: 0 !important;
-    margin: 0px !important;
-}
-div[role="radiogroup"] > label > input {
-    display: none !important;
-}
-/* Ensure the text is visible and centered */
-div[role="radiogroup"] > label > div:last-child {
-    display: block !important;
-    margin: 0px !important;
-}
-div[role="radiogroup"] > label:hover {
+div[data-testid="stPills"] > div > button:hover {
     background-color: rgba(255, 255, 255, 0.2) !important;
 }
-div[role="radiogroup"] > label[data-checked="true"],
-div[role="radiogroup"] > label:has(input:checked) {
+div[data-testid="stPills"] > div > button[data-checked="true"],
+div[data-testid="stPills"] > div > button[aria-pressed="true"] {
     background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%) !important;
     box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
 }
-div[role="radiogroup"] > label[data-checked="true"] *,
-div[role="radiogroup"] > label:has(input:checked) * {
-    color: #FFFFFF !important;
-}
-div[role="radiogroup"] > label[data-checked="true"],
-div[role="radiogroup"] > label:has(input:checked) {
-    background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%) !important;
-    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
-}
-div[role="radiogroup"] > label[data-checked="true"] *,
-div[role="radiogroup"] > label:has(input:checked) * {
+div[data-testid="stPills"] > div > button[data-checked="true"] *,
+div[data-testid="stPills"] > div > button[aria-pressed="true"] * {
     color: #FFFFFF !important;
 }
 
@@ -238,8 +211,10 @@ else:
     selected_period = f"{selected_year}{selected_q_option}"
 
 with col2:
-    # Menggunakan radio horizontal yang di-style dengan CSS agar terlihat seperti pill/tabs
-    page = st.radio("Navigasi", ["Sales", "Marketing", "Operations & Logistics", "Finance"], horizontal=True, label_visibility="collapsed")
+    # Menggunakan st.pills yang secara alami TIDAK PUNYA radio dot, lalu di-style dengan CSS
+    page = st.pills("Navigasi", ["Sales", "Marketing", "Operations & Logistics", "Finance"], default="Sales", label_visibility="collapsed")
+    if not page:
+        page = "Sales"
 
 # Terapkan filter global
 if period_type == "Semua":
