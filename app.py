@@ -59,7 +59,7 @@ div[role="radiogroup"] {
     border-radius: 25px;
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    margin-bottom: 25px; /* Memberi jarak agar tidak mepet dengan logo */
+    margin-bottom: 25px;
     justify-content: center;
 }
 div[role="radiogroup"] > label {
@@ -70,10 +70,30 @@ div[role="radiogroup"] > label {
     border-radius: 20px;
     transition: all 0.3s ease;
     cursor: pointer;
+    border: none !important;
 }
-
+/* Hide the actual radio circle entirely */
+div[role="radiogroup"] > label > div:first-child:not(:last-child) {
+    display: none !important;
+}
+div[role="radiogroup"] > label > input {
+    display: none !important;
+}
+/* Ensure the text is visible */
+div[role="radiogroup"] > label > div:last-child {
+    display: block !important;
+}
 div[role="radiogroup"] > label:hover {
     background-color: rgba(255, 255, 255, 0.2) !important;
+}
+div[role="radiogroup"] > label[data-checked="true"],
+div[role="radiogroup"] > label:has(input:checked) {
+    background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%) !important;
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
+}
+div[role="radiogroup"] > label[data-checked="true"] *,
+div[role="radiogroup"] > label:has(input:checked) * {
+    color: #FFFFFF !important;
 }
 div[role="radiogroup"] > label[data-checked="true"],
 div[role="radiogroup"] > label:has(input:checked) {
@@ -211,10 +231,8 @@ else:
     selected_period = f"{selected_year}{selected_q_option}"
 
 with col2:
-    # Menggunakan segmented control agar tidak ada titik radio
-    page = st.segmented_control("Navigasi", ["Sales", "Marketing", "Operations & Logistics", "Finance"], default="Sales", label_visibility="collapsed")
-    if not page:
-        page = "Sales"
+    # Menggunakan radio horizontal yang di-style dengan CSS agar terlihat seperti pill/tabs
+    page = st.radio("Navigasi", ["Sales", "Marketing", "Operations & Logistics", "Finance"], horizontal=True, label_visibility="collapsed")
 
 # Terapkan filter global
 if period_type == "Semua":
