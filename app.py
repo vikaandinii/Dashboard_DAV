@@ -72,16 +72,23 @@ div[role="radiogroup"] > label {
     cursor: pointer;
     border: none !important;
 }
-/* Hide the actual radio circle entirely */
-div[role="radiogroup"] > label > div:first-child:not(:last-child) {
+/* Hide the actual radio circle with maximum specificity */
+div[role="radiogroup"] > label > div:first-child,
+div[role="radiogroup"] > label > span:first-child,
+div[role="radiogroup"] > label > :first-child {
     display: none !important;
+    width: 0px !important;
+    height: 0px !important;
+    opacity: 0 !important;
+    margin: 0px !important;
 }
 div[role="radiogroup"] > label > input {
     display: none !important;
 }
-/* Ensure the text is visible */
+/* Ensure the text is visible and centered */
 div[role="radiogroup"] > label > div:last-child {
     display: block !important;
+    margin: 0px !important;
 }
 div[role="radiogroup"] > label:hover {
     background-color: rgba(255, 255, 255, 0.2) !important;
