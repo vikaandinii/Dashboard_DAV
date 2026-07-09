@@ -87,7 +87,7 @@ def render_operations(filtered_df, df, period_type, selected_period):
                 legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
                 xaxis_title="Rata-rata Hari", yaxis_title="Provinsi"
             )
-            st.plotly_chart(fig_delivery, use_container_width=True)
+            st.plotly_chart(fig_delivery, use_container_width=True, config={'displayModeBar': False})
         else:
             st.info("Tidak ada data pengiriman untuk kuartal ini.")
 
