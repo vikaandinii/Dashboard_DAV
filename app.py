@@ -152,10 +152,13 @@ div.stMarkdown > div > div.stInfo {
     border-radius: 12px;
     color: #1E3A8A !important;
 }
-/* Memastikan dropdown tahun tidak tertutup radio button */
+/* Memastikan dropdown tahun tidak tertutup radio button atau stHeader */
 div[data-testid="stSelectbox"] {
     position: relative;
-    z-index: 9999 !important;
+    z-index: 9999999 !important;
+}
+header[data-testid="stHeader"] {
+    z-index: 0 !important;
 }
 div[role="radiogroup"] {
     position: relative;
