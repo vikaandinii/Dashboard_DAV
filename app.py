@@ -63,7 +63,7 @@ div[role="radiogroup"] {
     justify-content: center;
 }
 div[role="radiogroup"] > label {
-    flex: 1;
+    flex: 1 1 auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,6 +80,7 @@ div[role="radiogroup"] > label > div:last-child {
     padding: 8px 16px;
     border-radius: 20px;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 /* Hide the actual radio circle entirely */
 div[role="radiogroup"] label > div:first-child,
