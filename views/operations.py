@@ -49,22 +49,24 @@ def render_operations(filtered_df, df, period_type, selected_period):
         delivery_df = filtered_df.groupby('customer_province')['delivery_days'].mean().reset_index()
         delivery_df = delivery_df.sort_values('delivery_days', ascending=False)
         if not delivery_df.empty:
-            # Add toggle for Slowest or Fastest
-            sort_order = st.radio("Urutkan Berdasarkan:", ["Terlama", "Tercepat"], horizontal=True, key="sort_delivery", label_visibility="collapsed")
+            # Use selectbox instead of radio to avoid pill styling
+            sort_order = st.selectbox(
+                f"Top 10 Pengiriman ({selected_period})", 
+                ["Terlama", "Tercepat"], 
+                key="sort_delivery"
+            )
             
             target_q3 = delivery_df['delivery_days'].quantile(0.75)
             
             if sort_order == "Terlama":
                 top10 = delivery_df.head(10).sort_values('delivery_days', ascending=True)
-                chart_title = f"Top 10 Pengiriman Terlama ({selected_period})"
                 highlight_val = top10['delivery_days'].max()
             else:
                 top10 = delivery_df.tail(10).sort_values('delivery_days', ascending=True)
-                chart_title = f"Top 10 Pengiriman Tercepat ({selected_period})"
                 highlight_val = top10['delivery_days'].min()
 
             fig_delivery = px.bar(top10, x='delivery_days', y='customer_province', orientation='h',
-                                  title=chart_title, text_auto='.1f',
+                                  text_auto='.1f',
                                   labels={'delivery_days': 'Rata-rata Hari', 'customer_province': 'Provinsi'})
             fig_delivery.add_vline(x=target_q3, line_dash="dash", line_color="#818CF8", 
                                    annotation_text=f"Target: {target_q3:.1f}",
