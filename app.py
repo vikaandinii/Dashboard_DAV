@@ -157,6 +157,28 @@ div[role="radiogroup"] {
     position: relative;
     z-index: 1 !important;
 }
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .stApp {
+        background-size: 100% 450px !important;
+    }
+    .dashboard-logo {
+        height: 70px !important;
+    }
+    .logo-container {
+        margin-top: 10px !important;
+        justify-content: center !important;
+    }
+    div[role="radiogroup"] {
+        padding: 5px 10px !important;
+        margin-bottom: 15px !important;
+    }
+    div[role="radiogroup"] > label {
+        padding: 5px 8px !important;
+        font-size: 0.85rem !important;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -189,12 +211,12 @@ def get_base64(bin_file):
         return ""
 
 logo_b64 = get_base64("logo_transparent.png")
-logo_html = f'<img src="data:image/png;base64,{logo_b64}" style="height: 120px; vertical-align: middle;">' if logo_b64 else '🛍️'
+logo_html = f'<img class="dashboard-logo" src="data:image/png;base64,{logo_b64}" style="height: 120px; vertical-align: middle;">' if logo_b64 else '🛍️'
 
 col1, col2, col3 = st.columns([1.5, 3, 1])
 
 with col1:
-    st.markdown(f"<div style='display:flex; align-items:center; margin-top:-30px;'>{logo_html}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='logo-container' style='display:flex; align-items:center; margin-top:-30px;'>{logo_html}</div>", unsafe_allow_html=True)
 
 with col3:
     c3a, c3b = st.columns(2)
