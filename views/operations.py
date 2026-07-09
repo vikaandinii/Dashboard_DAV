@@ -49,20 +49,32 @@ def render_operations(filtered_df, df, period_type, selected_period):
         delivery_df = filtered_df.groupby('customer_province')['delivery_days'].mean().reset_index()
         delivery_df = delivery_df.sort_values('delivery_days', ascending=False)
         if not delivery_df.empty:
+            # Add toggle for Slowest or Fastest
+            sort_order = st.radio("Urutkan Berdasarkan:", ["Terlama", "Tercepat"], horizontal=True, key="sort_delivery", label_visibility="collapsed")
+            
             target_q3 = delivery_df['delivery_days'].quantile(0.75)
-            max_delivery = delivery_df['delivery_days'].max()
+            
+            if sort_order == "Terlama":
+                top10 = delivery_df.head(10).sort_values('delivery_days', ascending=True)
+                chart_title = f"Top 10 Pengiriman Terlama ({selected_period})"
+                highlight_val = top10['delivery_days'].max()
+            else:
+                top10 = delivery_df.tail(10).sort_values('delivery_days', ascending=True)
+                chart_title = f"Top 10 Pengiriman Tercepat ({selected_period})"
+                highlight_val = top10['delivery_days'].min()
 
-            top10_lambat = delivery_df.head(10).sort_values('delivery_days', ascending=True)
-            fig_delivery = px.bar(top10_lambat, x='delivery_days', y='customer_province', orientation='h',
-                                  title=f"Top 10 Pengiriman Terlama ({selected_period})", text_auto='.1f',
+            fig_delivery = px.bar(top10, x='delivery_days', y='customer_province', orientation='h',
+                                  title=chart_title, text_auto='.1f',
                                   labels={'delivery_days': 'Rata-rata Hari', 'customer_province': 'Provinsi'})
             fig_delivery.add_vline(x=target_q3, line_dash="dash", line_color="#818CF8", 
                                    annotation_text=f"Target: {target_q3:.1f}",
                                    annotation_position="top left",
                                    annotation_bgcolor="rgba(244, 247, 254, 0.8)",
                                    annotation_borderwidth=0)
-            fig_delivery.update_traces(marker_color=['#312E81' if x == max_delivery else '#818CF8' for x in top10_lambat['delivery_days']])
-            fig_delivery.update_layout(height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)')
+            
+            # Highlight the extreme value (slowest or fastest) with a darker color
+            fig_delivery.update_traces(marker_color=['#312E81' if x == highlight_val else '#818CF8' for x in top10['delivery_days']])
+            fig_delivery.update_layout(height=230, margin=dict(t=35, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)')
             st.plotly_chart(fig_delivery, use_container_width=True)
         else:
             st.info("Tidak ada data pengiriman untuk kuartal ini.")
