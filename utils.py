@@ -92,7 +92,9 @@ def clean_heatmap_text(pivot_df, fmt):
     fmt: fungsi format, misal lambda v: f"{v:.0f}%"
     """
     try:
-        return pivot_df.map(lambda v: "" if pd.isna(v) else fmt(v)).values
-    except AttributeError:
-        # Fallback for older pandas versions
-        return pivot_df.applymap(lambda v: "" if pd.isna(v) else fmt(v)).values
+        if hasattr(pivot_df, 'map'):
+            return pivot_df.map(lambda v: "" if pd.isna(v) else fmt(v)).values
+        else:
+            return pivot_df.applymap(lambda v: "" if pd.isna(v) else fmt(v)).values
+    except Exception:
+        return pivot_df.values
