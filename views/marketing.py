@@ -33,7 +33,7 @@ def render_marketing(filtered_df, df, period_type, selected_period):
     metric_with_target(m3, "Pesanan per Pelanggan", avg_order_per_cust, target_opc, fmt="{:.1f}", suffix="x")
 
     CH = 220
-    MARGIN = dict(t=25, b=5, l=5, r=5)
+    MARGIN = dict(t=45, b=5, l=5, r=5)
 
     # ================== ROW 1 ==================
     r1c1, r1c2, r1c3 = st.columns(3)

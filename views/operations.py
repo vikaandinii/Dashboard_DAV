@@ -39,7 +39,7 @@ def render_operations(filtered_df, df, period_type, selected_period):
             fig_return = px.bar(return_reason_counts, x='Alasan', y='Jumlah', title=f"Alasan Retur Tertinggi ({selected_period})",
                                 color='Jumlah',
                                 text_auto=True, color_continuous_scale=['#E0E6ED', '#4F46E5'])
-            fig_return.update_layout(height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', coloraxis_showscale=False)
+            fig_return.update_layout(height=230, margin=dict(t=45, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', coloraxis_showscale=False)
             st.plotly_chart(fig_return, use_container_width=True)
         else:
             st.info("Tidak ada data retur untuk kuartal ini.")
@@ -82,7 +82,7 @@ def render_operations(filtered_df, df, period_type, selected_period):
             
             fig_delivery.update_layout(
                 title=f"Top 10 Pengiriman ({selected_period})",
-                height=230, margin=dict(t=25, b=0, l=10, r=10),
+                height=230, margin=dict(t=45, b=0, l=10, r=10),
                 plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
                 legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
                 xaxis_title="Rata-rata Hari", yaxis_title="Provinsi"
@@ -105,7 +105,7 @@ def render_operations(filtered_df, df, period_type, selected_period):
         fig_ops.add_trace(go.Bar(x=monthly_ops['label'], y=monthly_ops['order_id'], name='Volume Pesanan', marker_color='#818CF8', yaxis='y1'))
         fig_ops.add_trace(go.Scatter(x=monthly_ops['label'], y=monthly_ops['is_returned'], name='Tingkat Retur (%)', mode='lines+markers', line=dict(color='#312E81', width=3), yaxis='y2'))
         fig_ops.update_layout(title=f'Volume Pesanan vs Tingkat Retur per Bulan ({selected_period})',
-                               height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
+                               height=230, margin=dict(t=45, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
                                yaxis=dict(title='Volume Pesanan', side='left', showgrid=False),
                                yaxis2=dict(title='Tingkat Retur (%)', side='right', overlaying='y', showgrid=False),
                                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1))
@@ -123,7 +123,7 @@ def render_operations(filtered_df, df, period_type, selected_period):
         # Zoom the y-axis to make small differences visible
         min_y = fast_delivery['delivery_days'].min() - 0.2
         max_y = fast_delivery['delivery_days'].max() + 0.3
-        fig_fast.update_layout(height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', coloraxis_showscale=False)
+        fig_fast.update_layout(height=230, margin=dict(t=45, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', coloraxis_showscale=False)
         fig_fast.update_yaxes(range=[min_y, max_y])
         fig_fast.update_traces(textposition='outside', cliponaxis=False)
         st.plotly_chart(fig_fast, use_container_width=True)

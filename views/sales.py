@@ -79,7 +79,7 @@ def render_sales(filtered_df, df, period_type, selected_period):
                                 annotation_borderwidth=0)
 
         fig_sales.update_traces(line=dict(width=3), marker=dict(size=10))
-        fig_sales.update_layout(height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)')
+        fig_sales.update_layout(height=230, margin=dict(t=45, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)')
         st.plotly_chart(fig_sales, use_container_width=True)
 
     with r1c2:
@@ -88,7 +88,7 @@ def render_sales(filtered_df, df, period_type, selected_period):
         fig_brand = px.pie(brand_sales, names='brand_tier', values='final_price', hole=0.5,
                            title=f"Pendapatan per Brand ({selected_period})",
                            color_discrete_sequence=['#6366F1', '#818CF8', '#A5B4FC', '#C7D2FE'])
-        fig_brand.update_layout(height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)')
+        fig_brand.update_layout(height=230, margin=dict(t=45, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)')
         fig_brand.update_traces(textposition='inside', textinfo='percent+label', showlegend=False)
         st.plotly_chart(fig_brand, use_container_width=True)
 
