@@ -51,9 +51,9 @@ def render_finance(filtered_df, df, period_type, selected_period):
         monthly_fin['label'] = monthly_fin['month_year'].apply(format_month_id)
 
         fig_fin_area = go.Figure()
-        fig_fin_area.add_trace(go.Scatter(x=monthly_fin['label'], y=monthly_fin['gross_revenue'], fill='tozeroy', name='Pendapatan Kotor', mode='lines+markers', fillcolor='rgba(24, 59, 104, 0.4)', line=dict(color='#183B68'), yaxis='y1'))
-        fig_fin_area.add_trace(go.Scatter(x=monthly_fin['label'], y=monthly_fin['net_revenue'], fill='tozeroy', name='Pendapatan Bersih', mode='lines+markers', fillcolor='rgba(43, 90, 150, 0.6)', line=dict(color='#2B5A96'), yaxis='y1'))
-        fig_fin_area.add_trace(go.Scatter(x=monthly_fin['label'], y=monthly_fin['discount_percent'], name='Tingkat Diskon (%)', mode='lines+markers', line=dict(color='#0B1A30', width=3), yaxis='y2'))
+        fig_fin_area.add_trace(go.Scatter(x=monthly_fin['label'], y=monthly_fin['gross_revenue'], fill='tozeroy', name='Pendapatan Kotor', mode='lines+markers', fillcolor='rgba(99, 102, 241, 0.4)', line=dict(color='#6366F1'), yaxis='y1'))
+        fig_fin_area.add_trace(go.Scatter(x=monthly_fin['label'], y=monthly_fin['net_revenue'], fill='tozeroy', name='Pendapatan Bersih', mode='lines+markers', fillcolor='rgba(129, 140, 248, 0.6)', line=dict(color='#818CF8'), yaxis='y1'))
+        fig_fin_area.add_trace(go.Scatter(x=monthly_fin['label'], y=monthly_fin['discount_percent'], name='Tingkat Diskon (%)', mode='lines+markers', line=dict(color='#312E81', width=3), yaxis='y2'))
         fig_fin_area.update_layout(title=f'Pendapatan Kotor & Bersih vs Diskon per Bulan ({selected_period})',
                                height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
                                yaxis=dict(title='Pendapatan (Rp)', side='left', showgrid=False),
@@ -71,7 +71,7 @@ def render_finance(filtered_df, df, period_type, selected_period):
                               title=f"Beban Diskon per Kategori ({selected_period})",
                               color='discount_value',
                               labels={'discount_value': 'Total Diskon (Rp)', 'product_category': 'Kategori'},
-                              text_auto='.2s', color_continuous_scale=['#E0E6ED', '#0F2545'])
+                              text_auto='.2s', color_continuous_scale=['#E0E6ED', '#4F46E5'])
         fig_disc_cat.update_layout(height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', coloraxis_showscale=False)
         fig_disc_cat.update_traces(textposition='outside', cliponaxis=False)
         st.plotly_chart(fig_disc_cat, use_container_width=True)
@@ -85,7 +85,7 @@ def render_finance(filtered_df, df, period_type, selected_period):
             fig_loss = px.bar(loss_df, x='brand_tier', y='final_price', title=f"Kerugian Retur per Tingkat Brand ({selected_period})",
                               color='final_price',
                               text_auto='.2s', labels={'final_price': 'Kerugian (Rp)', 'brand_tier': 'Tingkat Brand'},
-                              color_continuous_scale=['#E0E6ED', '#183B68'])
+                              color_continuous_scale=['#E0E6ED', '#6366F1'])
             fig_loss.update_layout(height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', coloraxis_showscale=False)
             st.plotly_chart(fig_loss, use_container_width=True)
         else:
@@ -101,6 +101,6 @@ def render_finance(filtered_df, df, period_type, selected_period):
         fig_pay = px.bar(payment_counts, x='Jumlah', y='payment_method', orientation='h',
                              title=f"Preferensi Metode Pembayaran ({selected_period})", color='Jumlah', hover_data=['Avg_Value'],
                              labels={'payment_method': 'Metode Pembayaran', 'Jumlah': 'Jumlah Transaksi'},
-                             color_continuous_scale=['#E0E6ED', '#0F2545'])
+                             color_continuous_scale=['#E0E6ED', '#4F46E5'])
         fig_pay.update_layout(height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', showlegend=False, coloraxis_showscale=False)
         st.plotly_chart(fig_pay, use_container_width=True)

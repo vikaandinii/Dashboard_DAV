@@ -38,7 +38,7 @@ def render_operations(filtered_df, df, period_type, selected_period):
             return_reason_counts.columns = ['Alasan', 'Jumlah']
             fig_return = px.bar(return_reason_counts, x='Alasan', y='Jumlah', title=f"Alasan Retur Tertinggi ({selected_period})",
                                 color='Jumlah',
-                                text_auto=True, color_continuous_scale=['#E0E6ED', '#0F2545'])
+                                text_auto=True, color_continuous_scale=['#E0E6ED', '#4F46E5'])
             fig_return.update_layout(height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', coloraxis_showscale=False)
             st.plotly_chart(fig_return, use_container_width=True)
         else:
@@ -56,8 +56,8 @@ def render_operations(filtered_df, df, period_type, selected_period):
             fig_delivery = px.bar(top10_lambat, x='delivery_days', y='customer_province', orientation='h',
                                   title=f"Top 10 Pengiriman Terlama ({selected_period})", text_auto='.1f',
                                   labels={'delivery_days': 'Rata-rata Hari', 'customer_province': 'Provinsi'})
-            fig_delivery.add_vline(x=target_q3, line_dash="dash", line_color="#2B5A96", annotation_text=f"Target: {target_q3:.1f}")
-            fig_delivery.update_traces(marker_color=['#0B1A30' if x == max_delivery else '#2B5A96' for x in top10_lambat['delivery_days']])
+            fig_delivery.add_vline(x=target_q3, line_dash="dash", line_color="#818CF8", annotation_text=f"Target: {target_q3:.1f}")
+            fig_delivery.update_traces(marker_color=['#312E81' if x == max_delivery else '#818CF8' for x in top10_lambat['delivery_days']])
             fig_delivery.update_layout(height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)')
             st.plotly_chart(fig_delivery, use_container_width=True)
         else:
@@ -74,8 +74,8 @@ def render_operations(filtered_df, df, period_type, selected_period):
         monthly_ops['label'] = monthly_ops['month_year'].apply(format_month_id)
 
         fig_ops = go.Figure()
-        fig_ops.add_trace(go.Bar(x=monthly_ops['label'], y=monthly_ops['order_id'], name='Volume Pesanan', marker_color='#2B5A96', yaxis='y1'))
-        fig_ops.add_trace(go.Scatter(x=monthly_ops['label'], y=monthly_ops['is_returned'], name='Tingkat Retur (%)', mode='lines+markers', line=dict(color='#0B1A30', width=3), yaxis='y2'))
+        fig_ops.add_trace(go.Bar(x=monthly_ops['label'], y=monthly_ops['order_id'], name='Volume Pesanan', marker_color='#818CF8', yaxis='y1'))
+        fig_ops.add_trace(go.Scatter(x=monthly_ops['label'], y=monthly_ops['is_returned'], name='Tingkat Retur (%)', mode='lines+markers', line=dict(color='#312E81', width=3), yaxis='y2'))
         fig_ops.update_layout(title=f'Volume Pesanan vs Tingkat Retur per Bulan ({selected_period})',
                                height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
                                yaxis=dict(title='Volume Pesanan', side='left', showgrid=False),
@@ -90,7 +90,7 @@ def render_operations(filtered_df, df, period_type, selected_period):
                           title=f"Lama Pengiriman per Kategori ({selected_period})", text_auto='.1f',
                           color='delivery_days',
                           labels={'delivery_days': 'Hari', 'product_category': 'Kategori'},
-                          color_continuous_scale=['#E0E6ED', '#183B68'])
+                          color_continuous_scale=['#E0E6ED', '#6366F1'])
         
         # Zoom the y-axis to make small differences visible
         min_y = fast_delivery['delivery_days'].min() - 0.2
