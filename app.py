@@ -17,9 +17,10 @@ st.markdown("""
 /* Reset background with a soft modern color and a beautiful SVG wave header */
 .stApp {
     background-color: #F0F4F8 !important;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 250'%3E%3Cpath fill='%230F2545' fill-opacity='1' d='M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,149.3C672,160,768,224,864,240C960,256,1056,224,1152,202.7C1248,181,1344,171,1392,165.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 250' preserveAspectRatio='none'%3E%3Cpath fill='%230F2545' fill-opacity='1' d='M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,149.3C672,160,768,224,864,240C960,256,1056,224,1152,202.7C1248,181,1344,171,1392,165.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-size: 100% 250px;
+    background-position: top left;
 }
 
 /* Custom Navbar Header */
@@ -161,7 +162,8 @@ div[role="radiogroup"] {
 /* Responsive adjustments for mobile */
 @media (max-width: 768px) {
     .stApp {
-        background-size: 100% 450px !important;
+        background-size: 100% 320px !important;
+        background-position: top left !important;
     }
     .dashboard-logo {
         height: 70px !important;
