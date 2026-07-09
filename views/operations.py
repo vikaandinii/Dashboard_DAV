@@ -60,9 +60,7 @@ def render_operations(filtered_df, df, period_type, selected_period):
                                    annotation_text=f"Target: {target_q3:.1f}",
                                    annotation_position="top left",
                                    annotation_bgcolor="rgba(244, 247, 254, 0.8)",
-                                   annotation_bordercolor="#818CF8",
-                                   annotation_borderwidth=1,
-                                   annotation_borderpad=2)
+                                   annotation_borderwidth=0)
             fig_delivery.update_traces(marker_color=['#312E81' if x == max_delivery else '#818CF8' for x in top10_lambat['delivery_days']])
             fig_delivery.update_layout(height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)')
             st.plotly_chart(fig_delivery, use_container_width=True)

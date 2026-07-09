@@ -76,9 +76,7 @@ def render_sales(filtered_df, df, period_type, selected_period):
                                 annotation_text=f"Target: Rp {monthly_target/1e6:.1f}M", 
                                 annotation_position="top left",
                                 annotation_bgcolor="rgba(244, 247, 254, 0.8)",
-                                annotation_bordercolor="#818CF8",
-                                annotation_borderwidth=1,
-                                annotation_borderpad=2)
+                                annotation_borderwidth=0)
 
         fig_sales.update_traces(line=dict(width=3), marker=dict(size=10))
         fig_sales.update_layout(height=230, margin=dict(t=25, b=0, l=10, r=10), plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)')
