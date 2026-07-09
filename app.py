@@ -53,9 +53,9 @@ div[data-testid="stSelectbox"] label {
 div[role="radiogroup"] {
     position: relative;
     z-index: 1 !important;
-    gap: 10px;
+    gap: 4px;
     background-color: rgba(255, 255, 255, 0.85);
-    padding: 8px 15px;
+    padding: 6px;
     border-radius: 25px;
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
@@ -63,6 +63,10 @@ div[role="radiogroup"] {
     justify-content: center;
 }
 div[role="radiogroup"] > label {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: transparent !important;
     color: #334155 !important;
     font-weight: 700;
@@ -70,6 +74,7 @@ div[role="radiogroup"] > label {
     border-radius: 20px;
     transition: all 0.3s ease;
     cursor: pointer;
+    margin: 0 !important;
 }
 /* Hide the actual radio circle entirely */
 div[role="radiogroup"] label > div:first-child,
