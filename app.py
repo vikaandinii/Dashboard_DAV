@@ -16,11 +16,10 @@ st.markdown("""
 <style>
 /* Reset background with a soft modern color and a beautiful SVG wave header */
 .stApp {
-    background-color: #F0F4F8 !important;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 250' preserveAspectRatio='none'%3E%3Cpath fill='%230F2545' fill-opacity='1' d='M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,149.3C672,160,768,224,864,240C960,256,1056,224,1152,202.7C1248,181,1344,171,1392,165.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+    background-color: #F4F7FE !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 250'%3E%3Cpath fill='%236366F1' fill-opacity='1' d='M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,149.3C672,160,768,224,864,240C960,256,1056,224,1152,202.7C1248,181,1344,171,1392,165.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-size: 100% 250px;
-    background-position: top left;
 }
 
 /* Custom Navbar Header */
@@ -38,9 +37,9 @@ h1 {
 
 /* Filter select box */
 div[data-testid="stSelectbox"] > div > div {
-    background-color: #D1D9E6 !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
     border-radius: 12px !important;
-    color: #0F2545 !important;
+    color: #1E293B !important;
     border: none !important;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     backdrop-filter: blur(5px);
@@ -55,7 +54,7 @@ div[role="radiogroup"] {
     position: relative;
     z-index: 1 !important;
     gap: 10px;
-    background-color: rgba(224, 230, 237, 0.85); /* #E0E6ED */
+    background-color: rgba(255, 255, 255, 0.85);
     padding: 8px 15px;
     border-radius: 25px;
     backdrop-filter: blur(10px);
@@ -72,16 +71,10 @@ div[role="radiogroup"] > label {
     transition: all 0.3s ease;
     cursor: pointer;
 }
-/* Hide the actual radio circle entirely without hiding the text */
-/* Streamlit 1.25-1.30 (Old version on your computer) */
+/* Hide the actual radio circle entirely */
+div[role="radiogroup"] label > div:first-child,
+div[role="radiogroup"] label > div:first-of-type,
 div[role="radiogroup"] span[data-baseweb="radio"] > div:first-child {
-    display: none !important;
-}
-/* Streamlit 1.35+ (New version on Streamlit Cloud) */
-div[role="radiogroup"] label[data-baseweb="radio"] > div:first-child {
-    display: none !important;
-}
-div[role="radiogroup"] input[type="radio"] {
     display: none !important;
 }
 div[role="radiogroup"] > label:hover {
@@ -89,8 +82,8 @@ div[role="radiogroup"] > label:hover {
 }
 div[role="radiogroup"] > label[data-checked="true"],
 div[role="radiogroup"] > label:has(input:checked) {
-    background: #0F2545 !important;
-    box-shadow: 0 4px 10px rgba(15, 37, 69, 0.4);
+    background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%) !important;
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
 }
 div[role="radiogroup"] > label[data-checked="true"] *,
 div[role="radiogroup"] > label:has(input:checked) * {
@@ -105,7 +98,7 @@ div[data-testid="stMetric"] {
     box-shadow: 0 4px 6px rgba(0,0,0,0.04) !important;
     border: 1px solid rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    min-height: 125px !important;
+    height: 90px !important;
     position: relative !important;
     display: flex;
     flex-direction: column;
@@ -117,7 +110,7 @@ div[data-testid="stMetric"]:hover {
     box-shadow: 0 10px 15px rgba(0,0,0,0.08) !important;
 }
 div[data-testid="stMetric"] > div {
-    color: #0F2545 !important;
+    color: #4F46E5 !important;
     font-weight: 800 !important;
 }
 div[data-testid="stMetricValue"] {
@@ -134,7 +127,7 @@ div[data-testid="stMetric"] label, div[data-testid="stMetric"] p {
 div[data-testid="stMetricDelta"] {
     background-color: transparent !important;
     align-self: flex-end !important;
-    margin-top: 0px !important;
+    margin-top: -10px !important; /* tarik sedikit ke atas agar lebih rapat */
 }
 div[data-testid="stMetricDelta"] > div,
 div[data-testid="stMetricDelta"] * {
@@ -158,49 +151,23 @@ div[role="radiogroup"] {
     position: relative;
     z-index: 1 !important;
 }
-
-/* Responsive adjustments for mobile */
-@media (max-width: 768px) {
-    .stApp {
-        background-size: 100% 320px !important;
-        background-position: top left !important;
-    }
-    .dashboard-logo {
-        height: 70px !important;
-    }
-    .logo-container {
-        margin-top: 10px !important;
-        justify-content: center !important;
-    }
-    div[role="radiogroup"] {
-        padding: 5px 10px !important;
-        margin-bottom: 15px !important;
-    }
-    div[role="radiogroup"] > label {
-        padding: 5px 8px !important;
-        font-size: 0.85rem !important;
-    }
-}
 </style>
 """, unsafe_allow_html=True)
 
 # --- DATA LOADING ---
 @st.cache_data
 def load_data():
-    # Cache clear
     df = pd.read_csv("shopnesia_cleaned.csv")
     df['order_date'] = pd.to_datetime(df['order_date'])
     df['year'] = df['order_date'].dt.year
     df['month_year'] = df['order_date'].dt.to_period('M').astype(str)
     df['quarter'] = df['order_date'].dt.to_period('Q').astype(str)
-    # Kalkulasi net_revenue kasar: asumsikan final_price adalah harga setelah diskon (jika retur = 0, jika retur = kurangi final price)
-    # Untuk simplifikasi net_revenue = final_price dimana is_returned == False
     return df
 
 try:
     df = load_data()
 except FileNotFoundError:
-    st.error("File 'shopnesia_cleaned.csv' tidak ditemukan. Pastikan file berada di direktori yang sama dengan app.py.")
+    st.error("File 'shopnesia_cleaned.csv' tidak ditemukan.")
     st.stop()
 
 # --- TOP NAVBAR (SINGLE ROW) ---
@@ -213,12 +180,12 @@ def get_base64(bin_file):
         return ""
 
 logo_b64 = get_base64("logo_transparent.png")
-logo_html = f'<img class="dashboard-logo" src="data:image/png;base64,{logo_b64}" style="height: 120px; vertical-align: middle;">' if logo_b64 else '🛍️'
+logo_html = f'<img src="data:image/png;base64,{logo_b64}" style="height: 120px; vertical-align: middle;">' if logo_b64 else '🛍️'
 
 col1, col2, col3 = st.columns([1.5, 3, 1])
 
 with col1:
-    st.markdown(f"<div class='logo-container' style='display:flex; align-items:center; margin-top:-30px;'>{logo_html}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='display:flex; align-items:center; margin-top:-30px;'>{logo_html}</div>", unsafe_allow_html=True)
 
 with col3:
     c3a, c3b = st.columns(2)
@@ -246,7 +213,6 @@ else:
     selected_period = f"{selected_year}{selected_q_option}"
 
 with col2:
-    # Menggunakan radio horizontal yang di-style dengan CSS agar terlihat seperti pill/tabs
     page = st.radio("Navigasi", ["Sales", "Marketing", "Operations & Logistics", "Finance"], horizontal=True, label_visibility="collapsed")
 
 # Terapkan filter global
