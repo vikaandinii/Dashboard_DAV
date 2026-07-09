@@ -60,7 +60,11 @@ def render_marketing(filtered_df, df, period_type, selected_period):
         if target_discount is not None and not pd.isna(target_discount) and period_type != "Semua":
             fig_dual.add_hline(y=target_discount, line_dash="dash", line_color="#312E81", 
                                annotation_text=f"Target Diskon: {target_discount:.1f}%", 
-                               annotation_position="top left", yref="y2")
+                               annotation_position="top left", 
+                               annotation_bgcolor="rgba(244, 247, 254, 0.8)",
+                               annotation_bordercolor="#312E81",
+                               annotation_borderwidth=1,
+                               yref="y2")
         st.plotly_chart(fig_dual, use_container_width=True)
 
     with r1c2:
