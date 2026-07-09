@@ -68,13 +68,18 @@ div[role="radiogroup"] > label {
     justify-content: center;
     align-items: center;
     background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    cursor: pointer;
+}
+/* Style the inner container to look like a pill */
+div[role="radiogroup"] > label > div:last-child {
+    background: transparent;
     color: #334155 !important;
     font-weight: 700;
     padding: 8px 16px;
     border-radius: 20px;
     transition: all 0.3s ease;
-    cursor: pointer;
-    margin: 0 !important;
 }
 /* Hide the actual radio circle entirely */
 div[role="radiogroup"] label > div:first-child,
@@ -82,11 +87,11 @@ div[role="radiogroup"] label > div:first-of-type,
 div[role="radiogroup"] span[data-baseweb="radio"] > div:first-child {
     display: none !important;
 }
-div[role="radiogroup"] > label:hover {
+div[role="radiogroup"] > label:hover > div:last-child {
     background-color: rgba(255, 255, 255, 0.2) !important;
 }
-div[role="radiogroup"] > label[data-checked="true"],
-div[role="radiogroup"] > label:has(input:checked) {
+div[role="radiogroup"] > label[data-checked="true"] > div:last-child,
+div[role="radiogroup"] > label:has(input:checked) > div:last-child {
     background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%) !important;
     box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
 }
